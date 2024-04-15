@@ -14,15 +14,42 @@
     font-family: Roboto;
     font-weight: 500;
     font-size: 16px;
-    color: rgb(100, 100, 100);
+    color: rgb(85, 85, 85);
     text-decoration: none;
 }
 .dropdown-item:active {
-    background-color: rgb(70, 70, 70);
-}
-.dropdown-item:hover {
-    background-color: rgb(220, 220, 220);
+    background-color: rgb(0,134,255);
 }
 .dropdown-item:active > a {
-    color: whitesmoke;
+    color: white;
+}
+.dropdown-item:hover {
+    background-color: rgb(130,195,255);
+}
+.dropdown-item:hover > a {
+    color:white;
+}
+body {
+    background: url("../img/portrait-of-beautiful-woman-holding-colorful-paper-bags.jpg") no-repeat center top fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+
+nav {
+    box-shadow: 0 5px 30px black;
+}
+
+.hdr{
+    color: white;
+    font-family: Roboto;
+    font-size: 35px;
+    font-weight: 900;
+    margin-top: 300px;
+    text-decoration: none;
+}
+.arrow {
+    color: white;
+    font-size: 30px;
 }
