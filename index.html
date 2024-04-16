@@ -29,7 +29,7 @@
                             <li class="dropdown-item"><a href="#">Выйти</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item"><a href="#" class="nav-link"><img src="static/img/login.svg" alt="" class="icons"></a></li>
+                    <li class="nav-item"><a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#loginModal"><img src="static/img/login.svg" alt="" class="icons"></a></li>
                 </ul>
             </div>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navcat" aria-controls="navcat" aria-expanded="false" aria-label="Меню">
@@ -75,6 +75,32 @@
             </div>
         </div>
     </nav>
+
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="loginModalLabel">Авторизация</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group flex-nowrap mb-2">
+                        <input type="text" class="form-control" placeholder="Адрес электронной почты" aria-label="Username" aria-describedby="addon-wrapping">
+                    </div>
+                    <div class="input-group flex-nowrap mb-2">
+                        <input type="text" class="form-control" placeholder="Пароль" aria-label="Username" aria-describedby="addon-wrapping">
+                    </div>
+                    <div class="text-end mb-3">
+                        <a href="#" class="lnk">Забыли пароль?</a>
+                    </div>
+                    <button type="button" class="btn btn-bl d-block mx-auto mb-3">Войти</button>
+                    <div class="text-center frst">
+                        Впервые здесь? <a href="#" class="lnk">Зарегистрироваться</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <section>
         <div class="container text-center">
