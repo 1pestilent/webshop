@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bosfor - главная</title>
+    <title>Bosfor - каталог</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;900&display=swap" rel="stylesheet">
@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="static/css/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="static/css/style.css">
     <!--Кастомный стиль для шаблона-->
-    <link rel="stylesheet" href="static/css/index.css">
+    <link rel="stylesheet" href="static/css/products.css">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -133,20 +133,116 @@
             </div>
         </div>
     </div>
+<!-- Контент страницы -->
+<section>
+    <div class="container mt-5">
+        <h1>Наш ассортимент</h1>
+        <div class="row mt-5">
 
-    <section>
-        <div class="container text-center">
-            <div class="row">
-                <div class="col"></div>
-                <div class="col"></div>
-                <div class="col"></div>
-                <div class="col mt-5">
-                    <a href="products.html" class="hdr btn">Перейти к ассортименту</a>
+        
+            <div class="col-4">
+                <!-- Поиск по названию -->
+                <form class="d-flex">
+                    <input type="text" class="form-control me-2" placeholder="Поиск по названию">
+                    <button class="btn btn-primary" type="submit">Поиск</button>
+                </form>
+            </div>
+            <div class="col-6">
+
+            </div>
+            <div class="col-2">
+                <!-- Сортировка по цене -->
+                <div class="form-group mr-3">
+                    <select class="form-control" id="sort">
+                    <option>По возрастанию</option>
+                    <option>По убыванию</option>
+                    </select>
                 </div>
             </div>
         </div>
-          
-    </section>
+        <div class="row mt-5">
+            <!-- Пример карточки товара -->
+            <div class="col-md-3 mb-3">
+              <div class="card">
+                <img src="https://via.placeholder.com/300" class="card-img-top" alt="Товар">
+                <div class="card-body">
+                  <h5 class="card-title">Название товара 1</h5>
+                  <p class="card-text">Описание товара. Здесь вы можете указать краткое описание продукта.</p>
+                  <a href="#" class="btn btn-primary">Купить</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="card">
+                  <img src="https://via.placeholder.com/300" class="card-img-top" alt="Товар">
+                  <div class="card-body">
+                    <h5 class="card-title">Название товара 1</h5>
+                    <p class="card-text">Описание товара. Здесь вы можете указать краткое описание продукта.</p>
+                    <a href="#" class="btn btn-primary">Купить</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3 mb-3">
+                <div class="card">
+                  <img src="https://via.placeholder.com/300" class="card-img-top" alt="Товар">
+                  <div class="card-body">
+                    <h5 class="card-title">Название товара 1</h5>
+                    <p class="card-text">Описание товара. Здесь вы можете указать краткое описание продукта.</p>
+                    <a href="#" class="btn btn-primary">Купить</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3 mb-3">
+                <div class="card">
+                  <img src="https://via.placeholder.com/300" class="card-img-top" alt="Товар">
+                  <div class="card-body">
+                    <h5 class="card-title">Название товара 1</h5>
+                    <p class="card-text">Описание товара. Здесь вы можете указать краткое описание продукта.</p>
+                    <a href="#" class="btn btn-primary">Купить</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3 mb-3">
+                <div class="card">
+                  <img src="https://via.placeholder.com/300" class="card-img-top" alt="Товар">
+                  <div class="card-body">
+                    <h5 class="card-title">Название товара 1</h5>
+                    <p class="card-text">Описание товара. Здесь вы можете указать краткое описание продукта.</p>
+                    <a href="#" class="btn btn-primary">Купить</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3 mb-3">
+                <div class="card">
+                  <img src="https://via.placeholder.com/300" class="card-img-top" alt="Товар">
+                  <div class="card-body">
+                    <h5 class="card-title">Название товара 1</h5>
+                    <p class="card-text">Описание товара. Здесь вы можете указать краткое описание продукта.</p>
+                    <a href="#" class="btn btn-primary">Купить</a>
+                  </div>
+                </div>
+              </div>
+            <!-- Продолжайте добавлять карточки товаров по аналогии -->
+            <!-- 5 дополнительных товаров -->
+        </div>
+            <!-- Пагинация -->
+        <ul class="pagination justify-content-center mt-4">
+            <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Предыдущий</a>
+            </li>
+            <li class="page-item active" aria-current="page">
+            <a class="page-link" href="#">1 <span class="sr-only">(текущая)</span></a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+            <a class="page-link" href="#">Следующий</a>
+            </li>
+        </ul>
+    </div>
+
+</section>
     <script src="static/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/c9d3fa4f5e.js" crossorigin="anonymous"></script>
 </body>
 </html>
