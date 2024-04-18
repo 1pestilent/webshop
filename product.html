@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="static/css/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="static/css/style.css">
     <!--Кастомный стиль для шаблона-->
-    <link rel="stylesheet" href="static/css/products.css">
+    <link rel="stylesheet" href="static/css/product.css">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -134,60 +134,30 @@
         </div>
     </div>
 <!-- Контент страницы -->
-<section>
-    <div class="container mt-5">
-        <h1>Наш ассортимент</h1>
-        <div class="row mt-5">
-            <div class="col-4">
-            <!-- Поиск по названию -->
-                <form class="d-flex">
-                    <input type="text" class="form-control me-2" placeholder="Поиск по названию">
-                    <button class="btn btn-primary" type="submit">Поиск</button>
-                </form>
-            </div>
-            <div class="col-6">
-
-            </div>
-            <div class="col-2">
-            <!-- Меню сортировки -->
-                <div class="form-group mr-3">
-                    <select class="form-control" id="sort">
-                    <option selected disabled>Сортировка</option>
-                    <option>Сначала новые</option>
-                    <option>Цена по возрастанию</option>
-                    <option>Цена по убыванию</option>
-                    </select>
-                </div>
-            </div>
+<section class="container mt-5">
+    <div class="row">
+      <div class="col-md-6">
+        <img src="https://via.placeholder.com/600" alt="Фото товара" class="img-fluid" id="productImage">
+      </div>
+      <div class="col-md-6">
+        <h2>Название товара111111111111111111111111111</h2>
+        <p>Описание товара...</p>
+        <div class="col-6 mb-2 mt-5">
+            <h4>Цена: 1000₽</h4>
+            <label for="sizeSelect" class="form-label">Выберите размер:</label>
+            <select class="form-select" id="sizeSelect">
+                <option selected disabled>Выберите размер</option>
+                <option value="S">S</option>
+                <option value="M">M</option>
+                <option value="L">L</option>
+                <option value="XL">XL</option>
+            </select>
         </div>
-        <div class="row mt-5">
-        <!--  Карточки товаров -->
-            <div class="col-md-3 mb-3">
-              <div class="card">
-                <a href="#"><img src="https://via.placeholder.com/300" class="card-img-top" alt="Товар"></a>
-                <div class="card-body">
-                  <a href="#" class="frst"><h5 class="card-title">Название товара 1</h5></a>
-                  <a href="#" class="btn btn-primary">Купить</a>
-                </div>
-              </div>
-            </div>
-        </div>
-        <!-- Пагинация -->
-        <ul class="pagination justify-content-center mt-4">
-            <li class="page-item disabled">
-            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Предыдущий</a>
-            </li>
-            <li class="page-item active" aria-current="page">
-            <a class="page-link" href="#">1</a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-            <a class="page-link" href="#">Следующий</a>
-            </li>
-        </ul>
+        <button class="btn btn-primary">Добавить в корзину</button>
+      </div>
     </div>
-</section>
+  </section>
+  
     <script src="static/js/bootstrap.bundle.min.js"></script>
     <script src="static/js/products.js"></script>
 </body>
