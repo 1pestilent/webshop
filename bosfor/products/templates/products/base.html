@@ -27,7 +27,7 @@
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><img src="{% static "img/user.svg" %}" alt="" class="icons"></a>
                         <ul class="dropdown-menu">
                             <li class="dropdown-item"><a href="#">Профиль</a></li>
-                            <li class="dropdown-item"><a href="#">Админ-панель</a></li>
+                            <li class="dropdown-item"><a href="{% url 'admin:index' %}">Админ-панель</a></li>
                             <li class="dropdown-item"><a href="#">Аналитика</a></li>
                             <li class="dropdown-divider"></li>
                             <li class="dropdown-item"><a href="#">Выйти</a></li>

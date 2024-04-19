@@ -20,7 +20,7 @@ from django.urls import path
 from products.views import index, products, product
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls, name="admin"),
     path('products/', products, name="products"),
     path('products/product/', product, name="product"),
     path('', index, name="index"),
