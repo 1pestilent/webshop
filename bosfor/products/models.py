@@ -38,6 +38,7 @@ class Product(models.Model):
     name = models.CharField(max_length=128)
     description = models.TextField()
     price = models.DecimalField(max_digits=6, decimal_places=2)
+    image_for_card = models.ImageField(upload_to='products_images')
 
     class Meta:
         verbose_name = 'product'
@@ -47,10 +48,6 @@ class Product(models.Model):
         return f'Продукт: {self.name} | Категория: {self.category.name}'
     
 class ImagesForProduct(models.Model):
-    product = models.ForeignKey(Product, on_delete = models.CASCADE)
-    image = models.ImageField(upload_to='products_images')
-
-class ImagesForProductCard(models.Model):
     product = models.ForeignKey(Product, on_delete = models.CASCADE)
     image = models.ImageField(upload_to='products_images')
 
