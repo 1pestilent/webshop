@@ -31,8 +31,8 @@ class Product(models.Model):
     image_for_card = models.ImageField(upload_to='products_images', null=True, blank=True)
 
     class Meta:
-        verbose_name = 'product for man'
-        verbose_name_plural = 'products for man'
+        verbose_name = 'product'
+        verbose_name_plural = 'products'
 
     def __str__(self):
         return f'Продукт: {self.name} | Категория: {self.category.name} | Пол: {self.sex.name}'

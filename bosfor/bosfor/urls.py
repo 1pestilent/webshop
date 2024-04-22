@@ -10,9 +10,9 @@ urlpatterns = [
     path('admin/', admin.site.urls, name="admin"),
     path('', index, name="index"),
     path('products/', products, name="products"),
-    path('products/<int:gender_id>', products, name="gender"),
+    path('products/<int:gender_id>/', products, name="gender"),
     path('products/<int:gender_id>/<int:category_id>', products, name="gendercat"),
-    path('products/product/', product, name="product"),
+    path('products/product/<int:product_id>/', product, name="product"),
 ]
 
 if settings.DEBUG:

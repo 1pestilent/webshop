@@ -1,23 +1,19 @@
 {% extends "products/base.html" %}
 {% load static %}
 
-{% block css %}
-<link rel="stylesheet" href="static/css/product.css">
-{% endblock css %}
-
 
 {% block content %}
 <!-- Контент страницы -->
 <section class="container mt-5">
     <div class="row">
-      <div class="col-md-6">
-        <img src="https://via.placeholder.com/600" alt="Фото товара" class="img-fluid" id="productImage">
-      </div>
-      <div class="col-md-6">
-        <h2>Название товара</h2>
-        <p>Описание товара...</p>
+        <div class="col-md-6">
+        <img src="{{ product.image_for_card.url }}" alt="Фото товара" class="img-fluid" id="productImage">
+        </div>
+        <div class="col-md-6">
+        <h2>{{ product.name }}</h2>
+        <p>{{ product.description }}</p>
         <div class="col-6 mb-2 mt-5">
-            <h4>Цена: 1000₽</h4>
+            <h4>Цена: {{ product.price }}₽</h4>
             <label for="sizeSelect" class="form-label">Выберите размер:</label>
             <select class="form-select" id="sizeSelect">
                 <option selected disabled>Выберите размер</option>
@@ -28,8 +24,7 @@
             </select>
         </div>
         <button class="btn btn-primary">Добавить в корзину</button>
-      </div>
-    </div>
-  </section>
-  <script src="static/js/products.js"></script>
+        </div>
+        </div>
+        </section>
 {% endblock content %}

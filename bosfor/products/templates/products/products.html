@@ -1,11 +1,6 @@
 {% extends "products/base.html" %}
 {% load static %}
 
-{% block css %}
-    <!--Кастомный стиль для шаблона-->
-    <link rel="stylesheet" href="static/css/products.css">
-{% endblock css %}
-
 {% block content %}
 <!-- Контент страницы -->
 <section>
@@ -42,15 +37,15 @@
                 {% for product in products %}
                     <div class="col-md-3 mb-3">
                     <div class="card">
-                        <a href="#">
+                        <a href="{% url "product" product.id %}">
                             {% if product.image_for_card.url %}
-                                <img class="card-img-top product-image" src="{{ product.image_for_card.url }}" alt="Товар">
+                                <img class="card-img-top" src="{{ product.image_for_card.url }}" alt="Товар">
                             {% else %}
                                 <img class="card-img-top" src="https://via.placeholder.com/300" alt="Товар">
                             {% endif %}
                         </a>
                         <div class="card-body">
-                            <a href="#" class="frst"><h5 class="card-title">{{ product.name }}</h5></a>
+                            <a href="{% url "product" product.id %}" class="frst"><h5 class="card-title">{{ product.name }}</h5></a>
                             <div class="row">
                                 <div class="col-8">
                                     {{ product.price }} руб.

@@ -4,7 +4,8 @@ from products.models import *
 def index(request):
     context = {
         'title': 'Bosfor - главная',
-        'genders': Gender.objects.all()
+        'genders': Gender.objects.all(),
+        'categories': Category.objects.filter().distinct(),
     }
     return render(request, 'products/index.html', context)
 
@@ -24,5 +25,12 @@ def products(request, gender_id = None, category_id = None):
     }
     return render(request, 'products/products.html', context)
 
-def product(request):
-    return render(request, 'products/product.html')
+def product(request, product_id=None):
+    product = get_object_or_404(Product, id=product_id)
+    context = {
+        'title': product.name,
+        'product': product,
+        'genders': Gender.objects.all(),
+        'categories': Category.objects.filter().distinct(),
+    }
+    return render(request, 'products/product.html',context)
