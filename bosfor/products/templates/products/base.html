@@ -51,7 +51,7 @@
                             <li class="dropdown-item"><a href="{% url "productforman" %}">Все товары</a></li>
                             <li class="dropdown-header">По категориям:</li>
                             {% for category in man_categorys %}
-                            <li class="dropdown-item"><a href="#">{{ category.name }}</a></li>
+                            <li class="dropdown-item"><a href="{% url "ctproductforman" category.id %}">{{ category.name }}</a></li>
                             {% endfor %}
                         </ul>
                     </li>
@@ -61,7 +61,7 @@
                             <li class="dropdown-item"><a href="{% url "productforwoman" %}">Все товары</a></li>
                             <li class="dropdown-header">По категориям:</li>
                             {% for category in woman_categorys %}
-                            <li class="dropdown-item"><a href="#">{{ category.name }}</a></li>
+                            <li class="dropdown-item"><a href="{% url "ctproductforwoman" category.id %}">{{ category.name }}</a></li>
                             {% endfor %}
                         </ul>
                     </li>
@@ -71,7 +71,7 @@
                             <li class="dropdown-item"><a href="{% url "productforkid" %}">Все товары</a></li>
                             <li class="dropdown-header">По категориям:</li>
                             {% for category in kid_categorys %}
-                            <li class="dropdown-item"><a href="#">{{ category.name }}</a></li>
+                            <li class="dropdown-item"><a href="{% url "ctproductforkid" category.id %}">{{ category.name }}</a></li>
                             {% endfor %}
                         </ul>
                     </li>

@@ -14,6 +14,9 @@ urlpatterns = [
     path('products/man/', all_products_for_mans, name="productforman"),
     path('products/woman/', all_products_for_womans, name="productforwoman"),
     path('products/kid/', all_products_for_kids, name="productforkid"),
+    path('products/man/category/<int:category_id>/', category_products_for_man, name="ctproductforman"),
+    path('products/woman/category/<int:category_id>/', category_products_for_woman, name="ctproductforwoman"),
+    path('products/kid/category/<int:category_id>/', category_products_for_kid, name="ctproductforkid"),
 ]
 
 if settings.DEBUG:
