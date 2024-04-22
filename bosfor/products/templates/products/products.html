@@ -35,15 +35,31 @@
         </div>
         <div class="row mt-5">
         <!--  Карточки товаров -->
+            {% for product in products %}
             <div class="col-md-3 mb-3">
               <div class="card">
-                <a href="#"><img src="https://via.placeholder.com/300" class="card-img-top" alt="Товар"></a>
+                <a href="#">
+                    {% if product.image_for_card.url %}
+                        <img class="card-img-top product-image" src="{{ product.image_for_card.url }}" alt="Товар">
+                    {% else %}
+                        <img class="card-img-top" src="https://via.placeholder.com/300" alt="Товар">
+                    {% endif %}
+                </a>
                 <div class="card-body">
-                  <a href="#" class="frst"><h5 class="card-title">Название товара 1</h5></a>
-                  <a href="#" class="btn btn-primary">Купить</a>
+                    <a href="#" class="frst"><h5 class="card-title">{{ product.name }}</h5></a>
+                    <div class="row">
+                        <div class="col-8">
+                            {{ product.price }} руб.
+                        </div>
+                        <div class="col-4">
+                            <a href="#" class="btn btn-primary">Купить</a>
+                        </div>
+                    </div>
+                    
                 </div>
               </div>
             </div>
+            {% endfor %}
         </div>
         <!-- Пагинация -->
         <ul class="pagination justify-content-center mt-4">

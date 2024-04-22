@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bosfor - главная</title>
+    <title>{{ title }}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;900&display=swap" rel="stylesheet">
@@ -48,34 +48,31 @@
                     <li class="nav-item dropdown ctgs">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Мужчинам</b></a>
                         <ul class="dropdown-menu">
-                            <li class="dropdown-item"><a href="#">Все товары</a></li>
+                            <li class="dropdown-item"><a href="{% url "productforman" %}">Все товары</a></li>
                             <li class="dropdown-header">По категориям:</li>
-                            <li class="dropdown-item"><a href="#">Верх</a></li>
-                            <li class="dropdown-item"><a href="#">Низ</a></li>
-                            <li class="dropdown-item"><a href="#">Обувь</a></li>
-                            <li class="dropdown-item"><a href="#">Аксессуары</a></li>
+                            {% for category in man_categorys %}
+                            <li class="dropdown-item"><a href="#">{{ category.name }}</a></li>
+                            {% endfor %}
                         </ul>
                     </li>
                     <li class="nav-item dropdown ctgs">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Женщинам</b></a>
                         <ul class="dropdown-menu">
-                            <li class="dropdown-item"><a href="#">Все товары</a></li>
+                            <li class="dropdown-item"><a href="{% url "productforwoman" %}">Все товары</a></li>
                             <li class="dropdown-header">По категориям:</li>
-                            <li class="dropdown-item"><a href="#">Верх</a></li>
-                            <li class="dropdown-item"><a href="#">Низ</a></li>
-                            <li class="dropdown-item"><a href="#">Обувь</a></li>
-                            <li class="dropdown-item"><a href="#">Аксессуары</a></li>
+                            {% for category in woman_categorys %}
+                            <li class="dropdown-item"><a href="#">{{ category.name }}</a></li>
+                            {% endfor %}
                         </ul>
                     </li>
                     <li class="nav-item dropdown ctgs">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Детям</b></a>   
                         <ul class="dropdown-menu">
-                            <li class="dropdown-item"><a href="#">Все товары</a></li>
+                            <li class="dropdown-item"><a href="{% url "productforkid" %}">Все товары</a></li>
                             <li class="dropdown-header">По категориям:</li>
-                            <li class="dropdown-item"><a href="#">Верх</a></li>
-                            <li class="dropdown-item"><a href="#">Низ</a></li>
-                            <li class="dropdown-item"><a href="#">Обувь</a></li>
-                            <li class="dropdown-item"><a href="#">Аксессуары</a></li>
+                            {% for category in kid_categorys %}
+                            <li class="dropdown-item"><a href="#">{{ category.name }}</a></li>
+                            {% endfor %}
                         </ul>
                     </li>
                     <li class="nav-item ctgs"><a href="#" class="nav-link" >О нас</a></li>
