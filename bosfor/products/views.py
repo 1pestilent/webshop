@@ -1,6 +1,8 @@
 from django.shortcuts import render, get_object_or_404
-from products.models import *
 from django.db.models import Sum, F, Case, When
+from django.core.paginator import Paginator
+from products.models import *
+
 
 def index(request):
     context = {
@@ -11,7 +13,7 @@ def index(request):
     return render(request, 'products/index.html', context)
 
 
-def products(request, gender_id = None, category_id = None):
+def products(request, gender_id = None, category_id = None, page=1):
     products = Product.objects.annotate(
     total_quantity=Sum(
                 Case(
@@ -79,17 +81,21 @@ def products(request, gender_id = None, category_id = None):
         if category_id:
             products = products.filter(category_id=category_id)
     
+    per_page = 12 
+    paginator = Paginator(products, per_page)
+    products_paginator = paginator.page(page)  
+
     context = {
         'title': 'Bosfor - каталог',
         'genders': Gender.objects.all(),
         'categories': Category.objects.filter().distinct(),
-        'products': products,
+        'products': products_paginator,
     }
     return render(request, 'products/products.html', context)
 
 def product(request, product_id=None):
     product = get_object_or_404(Product, id=product_id)
-    
+
     try:
         quantity_of_clothes = QuantityOfClothes.objects.get(product=product)
     except QuantityOfClothes.DoesNotExist:

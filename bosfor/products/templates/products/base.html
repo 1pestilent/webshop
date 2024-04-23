@@ -52,7 +52,7 @@
                                 <li class="dropdown-item"><a href="{% url "gender" gender.id %}">Все товары</a></li>
                                 <li class="dropdown-header">По категориям:</li>
                                 {% for category in categories %}
-                                <a href="{% url "gendercat" gender.id category.id%}"><li class="dropdown-item"><a href="{% url "gendercat" gender.id category.id%}">{{ category.name }}</a></li></a>
+                                    <li class="dropdown-item"><a href="{% url "gendercat" gender.id category.id%}">{{ category.name }}</a></li>
                                 {% endfor %}
                             </ul>
                         </li>

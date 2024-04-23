@@ -43,7 +43,7 @@ class ImagesForProduct(models.Model):
 
 class QuantityOfClothes(models.Model):
     product = models.ForeignKey(Product, on_delete = models.CASCADE)
-    XS = models.PositiveIntegerField(default=0)
+    XSS = models.PositiveIntegerField(default=0)
     XS = models.PositiveIntegerField(default=0)
     S = models.PositiveIntegerField(default=0)
     M = models.PositiveIntegerField(default=0)
