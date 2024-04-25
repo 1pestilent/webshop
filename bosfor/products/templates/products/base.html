@@ -22,14 +22,17 @@
             <div class="order-lg-last">
                 <ul class="navbar-nav mr-auto">
                     {% if user.is_authenticated %}
-                    <li class="nav-item"><a href="#" class="nav-link position-relative"><img src="{% static "img/basket.svg" %}" alt="" class="icons"> <span class="position-absolute top-10 start-0 translate-middle badge rounded-pill bg-danger">
-                        0</a></li>
+                    <li class="nav-item"><a href="{% url "products:basket" %}" class="nav-link position-relative"><img src="{% static "img/basket.svg" %}" alt="" class="icons"> <span class="position-absolute top-10 start-0 translate-middle badge rounded-pill bg-danger">
+                        {{ baskets.total_quantity }}</a></li>
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><img src="{% static "img/user.svg" %}" alt="" class="icons"></a>
                         <ul class="dropdown-menu">
+                            
                             <li class="dropdown-item"><a href="{% url "users:profile" %}">Профиль</a></li>
-                            <li class="dropdown-item"><a href="{% url 'admin:index' %}">Админ-панель</a></li>
-                            <li class="dropdown-item"><a href="#">Аналитика</a></li>
+                            {% if user.is_superuser or user.is_staff %}
+                                <li class="dropdown-item"><a href="{% url 'admin:index' %}">Админ-панель</a></li>
+                                <li class="dropdown-item"><a href="#">Аналитика</a></li>
+                            {% endif %}
                             <li class="dropdown-divider"></li>
                             <li class="dropdown-item"><a href="{% url "users:logout" %}">Выйти</a></li>
                         </ul>

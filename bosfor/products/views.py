@@ -1,7 +1,8 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, HttpResponseRedirect
 from django.db.models import Sum, F, Case, When
 from django.core.paginator import Paginator
 from products.models import *
+from django.contrib.auth.decorators import login_required
 
 
 def index(request):
@@ -9,6 +10,7 @@ def index(request):
         'title': 'Bosfor - главная',
         'genders': Gender.objects.all(),
         'categories': Category.objects.filter().distinct(),
+        'baskets': Basket.objects.filter(user=request.user) if request.user.is_authenticated else 0,
     }
     return render(request, 'products/index.html', context)
 
@@ -90,6 +92,7 @@ def products(request, gender_id = None, category_id = None, page=1):
         'genders': Gender.objects.all(),
         'categories': Category.objects.filter().distinct(),
         'products': products_paginator,
+        'baskets': Basket.objects.filter(user=request.user) if request.user.is_authenticated else 0,
     }
     return render(request, 'products/products.html', context)
 
@@ -113,5 +116,36 @@ def product(request, product_id=None):
         'categories': Category.objects.filter().distinct(),
         'quantity_of_clothes': quantity_of_clothes,
         'quantity_of_shoes': quantity_of_shoes,
+        'baskets': Basket.objects.filter(user=request.user) if request.user.is_authenticated else 0,
     }
     return render(request, 'products/product.html',context)
+
+@login_required
+def basket_add(request, product_id):
+    product = Product.objects.get(id=product_id)
+    baskets = Basket.objects.filter(user=request.user, product=product)
+    
+    if not baskets.exists():
+        Basket.objects.create(user=request.user, product=product, quantity = 1)
+    else:
+        basket = baskets.first()
+        basket.quantity += 1
+        basket.save()
+    
+    return HttpResponseRedirect(request.META['HTTP_REFERER'])
+
+@login_required
+def basket_remove(request, product_id):
+    try:
+        basket_item = Basket.objects.get(user=request.user, product=product_id)
+        basket_item.delete()
+    except Basket.DoesNotExist:
+        pass
+    return HttpResponseRedirect(request.META['HTTP_REFERER'])
+
+@login_required
+def basket(request):
+    context = {'title': 'Bosfor - корзина',
+            'baskets': Basket.objects.filter(user=request.user), 
+        }
+    return render(request, 'users/basket.html', context)

@@ -158,7 +158,7 @@
                 {% endif %}
             </select>
         </div>
-        <button class="btn btn-primary">Добавить в корзину</button>
+            <a class="btn btn-primary" href="{% url "products:basket_add" product.id %}">Добавить в корзину</a> 
         </div>
         </div>
         </section>
