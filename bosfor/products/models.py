@@ -80,5 +80,21 @@ class Reviews(models.Model):
     user = models.ForeignKey(User,on_delete= models.CASCADE)
     text = models.TextField()   
     eval = models.PositiveIntegerField(default=0)
-    
 
+class Basket(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    quantity = models.PositiveSmallIntegerField(default=0)
+    timpestamp = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return f'Корзина для {self.user.email} | Продукт: {self.product.name}'
+    
+class Sells(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    quantity = models.PositiveSmallIntegerField(default=0)
+    timpestamp = models.DateTimeField(auto_now_add=True)   
+
+    def __str__(self):
+        return f'{self.user.email} приобрел: {self.product.name} в количестве {self.quantity}шт.'

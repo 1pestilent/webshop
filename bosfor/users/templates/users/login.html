@@ -1,0 +1,28 @@
+{% extends "users/base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="container">
+        <div class="row justify-content-center mt-5">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="text-center">Авторизация</h3>
+                    </div>
+                    <div class="card-body">
+                        <form action="{% url "users:login" %}" method="POST"> 
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <p class="text-end mb-0"><a href="#">Забыли пароль?</a></p>
+                            <button type="submit" class="btn btn-primary btn-block">Войти</button>
+                        </form>
+                    </div>
+                    <div class="card-footer">
+                        <p class="text-center mb-0">Нет аккаунта? <a href="{% url "users:reg" %}">Зарегистрируйтесь</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+
