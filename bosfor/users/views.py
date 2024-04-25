@@ -19,7 +19,8 @@ def login(request):
                 return HttpResponseRedirect(reverse('index'))
     else:
         form = UserLoginForm()
-    context = {'form': form}
+    context = {'form': form,
+               'title': 'Вход в личный кабинет'}
     return render(request, 'users/login.html',context)
 
 def registration(request):
@@ -31,21 +32,24 @@ def registration(request):
            return HttpResponseRedirect(reverse('users:login'))
     else:
         form = UserRegistrationForm()
-    context = {'form': form}
+    context = {'form': form,
+               'title': 'Регистрация пользователя'
+               }
     return render(request, 'users/reg.html', context)
 
 @login_required
 def profile(request):
     if request.method == "POST":
-        form = UserProfileForm(instance = request.user, data = request.POST, files = request.FILES)
+        form = UserProfileForm(instance = request.user, data = request.POST)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(reverse('users:profile'))
+        else:
+            print(form.errors)
     else:
         form = UserProfileForm(instance=request.user)
 
-    baskets = Basket.objects.filter(user=request.user)
-    context = {'title': 'Store - профиль',
+    context = {'title': 'Bosfor - профиль',
                 'form': form,
                 'baskets': Basket.objects.filter(user=request.user), 
             }
@@ -53,4 +57,4 @@ def profile(request):
 
 def logout(request):
     auth.logout(request)
-    return HttpResponseRedirect(reverse('mainpage'))
+    return HttpResponseRedirect(reverse('index'))
