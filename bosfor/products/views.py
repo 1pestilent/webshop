@@ -1,6 +1,7 @@
-from django.shortcuts import render, get_object_or_404, HttpResponseRedirect
+from django.shortcuts import render, get_object_or_404, HttpResponseRedirect, redirect
 from django.contrib.auth.decorators import login_required
-from django.db.models import Sum, F, Case, When, Q
+from django.db.models import Sum, F, Case, When
+from django.db import transaction
 from django.core.paginator import Paginator
 
 from products.utils import q_search
@@ -167,3 +168,20 @@ def basket(request):
             'baskets': Basket.objects.filter(user=request.user), 
         }
     return render(request, 'users/basket.html', context)
+
+@login_required
+def order_commit(request):
+    baskets = Basket.objects.filter(user=request.user)
+ 
+    with transaction.atomic():
+        order = Order.objects.create(user=request.user, status=Status.objects.get(name='В обработке'))
+        
+        total_sum = 0
+        for basket in baskets:
+            OrderDetails.objects.create(order=order, product=basket.product, quantity=basket.quantity)
+            total_sum += basket.sum()
+        order.sum = total_sum
+        order.save()
+        baskets.delete()
+    
+    return redirect('users:profile')

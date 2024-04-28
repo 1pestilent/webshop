@@ -3,7 +3,7 @@ from django.contrib import auth, messages
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
-from products.models import Basket
+from products.models import Basket, Order, OrderDetails
 from users.forms import UserLoginForm, UserRegistrationForm, UserProfileForm
 
 # Create your views here.
@@ -49,9 +49,17 @@ def profile(request):
     else:
         form = UserProfileForm(instance=request.user)
 
+    orders = Order.objects.filter(user=request.user)
+
+    order_details = {}
+    for order in orders:
+        order_details[order] = OrderDetails.objects.filter(order=order)
+
     context = {'title': 'Bosfor - профиль',
                 'form': form,
-                'baskets': Basket.objects.filter(user=request.user), 
+                'baskets': Basket.objects.filter(user=request.user),
+                'orders': orders,
+                'order_details': OrderDetails.objects.filter(order=order)
             }
     return render(request, 'users/profile.html', context)
 

@@ -88,7 +88,6 @@ class BasketQuerySet(models.QuerySet):
     def total_quantity(self):
         return sum(basket.quantity for basket in self)
 
-
 class Basket(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
@@ -102,12 +101,20 @@ class Basket(models.Model):
 
     def sum(self):
         return self.product.price * self.quantity
-    
-class Sells(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    quantity = models.PositiveSmallIntegerField(default=0)
-    timpestamp = models.DateTimeField(auto_now_add=True)   
+
+class Status(models.Model):
+    name = models.CharField(32)
 
     def __str__(self):
-        return f'{self.user.email} приобрел: {self.product.name} в количестве {self.quantity}шт.'
+        return f'{self.name}'
+
+class Order(models.Model):
+    user = models.ForeignKey(User, on_delete=models.PROTECT)
+    created = models.DateTimeField(auto_now_add=True)
+    status = models.ForeignKey(Status,on_delete=models.PROTECT)
+    sum = models.SmallIntegerField(default=0)
+
+class OrderDetails(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.PROTECT)
+    quantity = models.PositiveSmallIntegerField(default=0)
