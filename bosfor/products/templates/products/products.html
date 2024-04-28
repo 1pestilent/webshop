@@ -12,8 +12,8 @@
             <div class="row mt-5">
                 <div class="col-4">
                 <!-- Поиск по названию -->
-                    <form class="d-flex">
-                        <input type="text" class="form-control me-2" placeholder="Поиск по названию">
+                    <form class="d-flex" action="{% url 'products:search' %}" method="GET">
+                        <input type="text" class="form-control me-2" name="q" placeholder="Поиск по названию">
                         <button class="btn btn-primary" type="submit">Поиск</button>
                     </form>
                 </div>

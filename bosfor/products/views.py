@@ -1,8 +1,11 @@
 from django.shortcuts import render, get_object_or_404, HttpResponseRedirect
-from django.db.models import Sum, F, Case, When
-from django.core.paginator import Paginator
-from products.models import *
 from django.contrib.auth.decorators import login_required
+from django.db.models import Sum, F, Case, When, Q
+from django.core.paginator import Paginator
+
+from products.utils import q_search
+from products.models import *
+
 
 
 def index(request):
@@ -16,6 +19,8 @@ def index(request):
 
 
 def products(request, gender_id = None, category_id = None, page=1):
+    search_query = request.GET.get('q', '')
+
     products = Product.objects.annotate(
     total_quantity=Sum(
                 Case(
@@ -33,6 +38,9 @@ def products(request, gender_id = None, category_id = None, page=1):
                     ),
                     When(
                         quantityofclothes__XL__gt=0, then=F('quantityofclothes__XL')
+                    ),
+                    When(
+                        quantityofclothes__ONESIZE__gt=0, then=F('quantityofclothes__ONESIZE')
                     ),
                     default=0
                 ) +
@@ -73,6 +81,7 @@ def products(request, gender_id = None, category_id = None, page=1):
                     When(
                         quantityofshoes__s46__gt=0, then=F('quantityofshoes__s46')
                     ),
+
                     default=0
                 )
             )
@@ -80,10 +89,14 @@ def products(request, gender_id = None, category_id = None, page=1):
     
     if gender_id:
         products = products.filter(sex_id=gender_id)  
-        if category_id:
-            products = products.filter(category_id=category_id)
+
+    if category_id:
+        products = products.filter(category_id=category_id)
+
+    if search_query:
+        products = q_search(search_query)
     
-    per_page = 12 
+    per_page = 8
     paginator = Paginator(products, per_page)
     products_paginator = paginator.page(page)  
 
