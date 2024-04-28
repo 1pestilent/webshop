@@ -129,6 +129,7 @@ def product(request, product_id=None):
     context = {
         'title': product.name,
         'product': product,
+        'images': ImagesForProduct.objects.filter(product=product),
         'genders': Gender.objects.all(),
         'categories': Category.objects.filter().distinct(),
         'quantity_of_clothes': quantity_of_clothes,
