@@ -9,39 +9,44 @@
     <section class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <h2 class="mb-4">Корзина</h2>
-                <div class="card">
-                    <div class="card-body">
-                        <div class="list-group">
-                            <!-- Пример товара в корзине -->
-                            {% for basket in baskets %}
-                            <div class="list-group-item">
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <img src="{{ basket.product.image_for_card.url}}" alt="Фото товара" class="img-fluid">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h5 class="mb-1">{{basket.product.name}}</h5>
-                                        <small>Размер: M</small>
-                                        <div class="col-4">
-                                            Кол-во: {{ basket.quantity }}шт.
+                {% if not baskets %}
+                    <h2 class="mb-4">Ваша корзина пуста</h2>
+                {% else %}
+                    <h2 class="mb-4">Корзина</h2>
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="list-group">
+                                <!-- Пример товара в корзине -->
+                                {% for basket in baskets %}
+                                <div class="list-group-item">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <img src="{{ basket.product.image_for_card.url}}" alt="Фото товара" class="img-fluid">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <h5 class="mb-1">{{basket.product.name}}</h5>
+                                            <small>Размер: M</small>
+                                            <div class="col-4">
+                                                Кол-во: {{ basket.quantity }}шт.
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 text-end">
+                                            <h5 class="mb-1">{{basket.sum}}руб.</h5>
+                                            <a class="btn btn-sm btn-danger" href="{% url "products:basket_remove" basket.product.id%}">Удалить</a>
                                         </div>
                                     </div>
-                                    <div class="col-md-3 text-end">
-                                        <h5 class="mb-1">{{basket.sum}}руб.</h5>
-                                        <a class="btn btn-sm btn-danger" href="{% url "products:basket_remove" basket.product.id%}">Удалить</a>
-                                    </div>
                                 </div>
+                                {% endfor %}
                             </div>
-                            {% endfor %}
-                        </div>
-                        <hr>
-                        <div class="text-end">
-                            <h4>Итого: {{baskets.total_sum}}руб.</h4>
-                            <a href="{% url "products:order" %}" class="btn btn-primary">Оформить заказ</a>
+                            <hr>
+                            <div class="text-end">
+                                <h4>Итого: {{ baskets.all.total_sum }}руб.</h4> <!-- Исправлено здесь -->
+                                <a href="{% url "products:order" %}" class="btn btn-primary">Оформить заказ</a>
+                            </div>
                         </div>
                     </div>
-                </div>
+                {% endif %}
+
             </div>
         </div>
     </section>
