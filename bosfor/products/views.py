@@ -20,6 +20,7 @@ def index(request):
 
 def products(request, gender_id = None, category_id = None, page=1):
     search_query = request.GET.get('q', '')
+    order_by = request.GET.get('order_by', None)
 
     products = Product.objects.annotate(
     total_quantity=Sum(
@@ -95,6 +96,9 @@ def products(request, gender_id = None, category_id = None, page=1):
 
     if search_query:
         products = q_search(search_query)
+
+    if order_by and order_by!= "default":
+        products = products.order_by(order_by)
     
     per_page = 8
     paginator = Paginator(products, per_page)

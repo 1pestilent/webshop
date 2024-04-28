@@ -17,20 +17,25 @@
                         <button class="btn btn-primary" type="submit">Поиск</button>
                     </form>
                 </div>
-                <div class="col-6">
+                <div class="col-5">
 
                 </div>
-                <div class="col-2">
-                <!-- Меню сортировки -->
-                    <div class="form-group mr-3">
-                        <select class="form-control" id="sort">
-                        <option selected disabled>Сортировка</option>
-                        <option>Сначала новые</option>
-                        <option>Цена по возрастанию</option>
-                        <option>Цена по убыванию</option>
-                        </select>
-                    </div>
-                </div>
+                <div class="col-3">
+                    <!-- Меню сортировки -->
+                    <form class="row" action="{% if request.GET.q %} {% url "products:search" %}{% else %}{% url "products:index" %}{% endif %}" method="get">
+                        <div class="col">
+                            <select class="form-control" id="sort" name="order_by">
+                                <option selected disabled>Сортировка</option>
+                                <option value="default" {% if not request.GET.order_by or request.GET.order_by == 'default' %} selected {% endif %}>По умолчанию</option>
+                                <option value="price" {% if request.GET.order_by == 'price' %} selected {% endif %}>Цена по возрастанию</option>
+                                <option value="-price" {% if request.GET.order_by == '-price' %} selected {% endif %}>Цена по убыванию</option>
+                            </select>
+                        </div>
+                        <div class="col-auto">
+                            <button class="btn btn-primary" type="submit">Ok</button>
+                        </div>
+                    </form>
+                </div>               
             </div>
             <div class="row mt-5">
             <!--  Карточки товаров -->
