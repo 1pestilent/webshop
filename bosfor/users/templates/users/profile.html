@@ -36,18 +36,22 @@
             <div class="card-body">
                 <div class="list-group">
                 <!-- Заказы -->
-                    {% for order in orders %}
-                        <a href="#" class="list-group-item list-group-item-action">
-                            <div class="d-flex w-100 justify-content-between">
-                                <h5 class="mb-1">Заказ №{{ order.id }}</h5>
-                                <small>Дата: {{ order.created }}</small>
-                            </div>
-                            <div class="d-flex w-100 justify-content-between">
-                                <p>Сумма заказа: {{ order.sum }}</p>
-                                <small>Статус: {{ order.status }}</small>
-                            </div>  
-                        </a>
-                    {% endfor %}
+                    {% if orders %}
+                        {% for order in orders %}
+                            <a href="#" class="list-group-item list-group-item-action">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1">Заказ №{{ order.id }}</h5>
+                                    <small>Дата: {{ order.created }}</small>
+                                </div>
+                                <div class="d-flex w-100 justify-content-between">
+                                    <p>Сумма заказа: {{ order.sum }}</p>
+                                    <small>Статус: {{ order.status }}</small>
+                                </div>  
+                            </a>
+                        {% endfor %}
+                    {% else %}
+                        <h3 class="mb-4">Вы ещё не совершали покупок</h2>
+                    {% endif %}
                 </div>
             </div>
             </div>

@@ -114,7 +114,13 @@ class Order(models.Model):
     status = models.ForeignKey(Status,on_delete=models.PROTECT)
     sum = models.SmallIntegerField(default=0)
 
+    def __str__(self):
+        return f'Заказ №{self.id} от {self.user.email}'
+
 class OrderDetails(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.PROTECT)
     quantity = models.PositiveSmallIntegerField(default=0)
+
+    def __str__(self):
+        return f'Товар к заказу №{self.id}'

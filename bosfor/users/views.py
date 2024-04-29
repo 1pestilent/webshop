@@ -59,7 +59,6 @@ def profile(request):
                 'form': form,
                 'baskets': Basket.objects.filter(user=request.user),
                 'orders': orders,
-                'order_details': OrderDetails.objects.filter(order=order)
             }
     return render(request, 'users/profile.html', context)
 

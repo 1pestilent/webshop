@@ -4,9 +4,6 @@ from products.models import *
 admin.site.register(Category)
 admin.site.register(Gender)
 admin.site.register(ImagesForProduct)
-admin.site.register(Status)
-admin.site.register(Order)
-admin.site.register(OrderDetails)
 
 
 class QuantityOfClothesInline(admin.TabularInline):
