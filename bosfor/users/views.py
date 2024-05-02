@@ -7,6 +7,7 @@ from products.models import Basket, Order, OrderDetails
 from users.forms import UserLoginForm, UserRegistrationForm, UserProfileForm
 
 # Create your views here.
+
 def login(request):
     if request.method == "POST":
         form = UserLoginForm(data=request.POST)

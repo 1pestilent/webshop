@@ -20,13 +20,10 @@ from config import settings
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-pk)=$v7bv=y9!8vvyzpwum(m^+sbxq+2##_baa2%ayx-7mkwnh'
+SECRET_KEY = settings.SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
-
+DEBUG = settings.DEBUG
 
 # Application definition
 

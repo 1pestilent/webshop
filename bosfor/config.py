@@ -9,6 +9,8 @@ class Settings(BaseSettings):
     DB_USER: str
     DB_NAME: str
     DB_PASS: str
+    SECRET_KEY: str
+    DEBUG: bool
 
     model_config = SettingsConfigDict(env_file=env_file_path)
 
